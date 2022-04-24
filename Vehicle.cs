@@ -11,5 +11,6 @@ namespace TanksAPI
         public User User { get; set; }
         public int userId { get; set; }
         public Weapon Weapon { get; set; }
+        public List<Equipment> Equipments { get; set; }
     }
 }
