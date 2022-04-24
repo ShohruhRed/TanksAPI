@@ -11,7 +11,7 @@ using TanksAPI.Data;
 namespace TanksAPI.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220424121020_UserEntity")]
+    [Migration("20220424133300_UserEntity")]
     partial class UserEntity
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

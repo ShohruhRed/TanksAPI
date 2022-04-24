@@ -1,11 +1,14 @@
-﻿namespace TanksAPI
+﻿using System.Text.Json.Serialization;
+
+namespace TanksAPI
 {
     public class Vehicle
     {
         public int Id { get; set; }
-        public string Name { get; set; } = string.Empty;
+        public string Name { get; set; }
         public string VehicleType { get; set; } = "SPG";
+        [JsonIgnore]
         public User User { get; set; }
-        public int UserId { get; set; }
+        public int userId { get; set; }
     }
 }

@@ -1,5 +1,5 @@
-using Microsoft.EntityFrameworkCore;
-using TanksAPI.Data;
+global using Microsoft.EntityFrameworkCore;
+global using TanksAPI.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 

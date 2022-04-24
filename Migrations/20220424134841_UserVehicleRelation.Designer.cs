@@ -11,7 +11,7 @@ using TanksAPI.Data;
 namespace TanksAPI.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220424122600_UserVehicleRelation")]
+    [Migration("20220424134841_UserVehicleRelation")]
     partial class UserVehicleRelation
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -52,25 +52,25 @@ namespace TanksAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
                     b.Property<string>("VehicleType")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("userId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("userId");
 
-                    b.ToTable("Vehicle");
+                    b.ToTable("Vehicles");
                 });
 
             modelBuilder.Entity("TanksAPI.Vehicle", b =>
                 {
                     b.HasOne("TanksAPI.User", "User")
                         .WithMany("Vehicles")
-                        .HasForeignKey("UserId")
+                        .HasForeignKey("userId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
