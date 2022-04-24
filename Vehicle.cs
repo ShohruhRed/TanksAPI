@@ -10,5 +10,6 @@ namespace TanksAPI
         [JsonIgnore]
         public User User { get; set; }
         public int userId { get; set; }
+        public Weapon Weapon { get; set; }
     }
 }

@@ -19,6 +19,7 @@ namespace TanksAPI.Controllers
         {
             var vehicles = await _context.Vehicles
                 .Where(v => v.userId == userId)
+                .Include(v => v.Weapon)
                 .ToListAsync();
             return vehicles;
         }
@@ -32,7 +33,8 @@ namespace TanksAPI.Controllers
             if (user == null)
                 return NotFound();
 
-            var newVehicle = new Vehicle {
+            var newVehicle = new Vehicle
+            {
                 Name = request.Name,
                 VehicleType = request.VehicleType,
                 User = user
@@ -43,10 +45,28 @@ namespace TanksAPI.Controllers
 
             return await Get(newVehicle.userId);
 
-            
-            
         }
 
+        [HttpPost("weapon")]
+        public async Task<ActionResult<Vehicle>> AddWeapon(AddWeaponDto request)
+        {
+            var vehicle = await _context.Vehicles.FindAsync(request.VehicleId);
 
+            if (vehicle == null)
+                return NotFound();
+
+            var newWeapon = new Weapon
+            {
+                Name = request.Name,
+                Damage = request.Damage,
+                Vehicle = vehicle
+            };
+
+            _context.Weapons.Add(newWeapon);
+            await _context.SaveChangesAsync();
+
+            return vehicle;
+
+        }
     }
 }
